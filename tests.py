@@ -23,7 +23,7 @@ class TestLogin(unittest.TestCase):
 
     def test_empty_form_login(self):
         """
-        Check case when click login button without any values
+        Try to login without values
         """
         self.page.open()
         self.page.login(
@@ -35,9 +35,9 @@ class TestLogin(unittest.TestCase):
         self.assertEqual(self.page.get_error()[1].text, 'Password is required',
                          'No error message about incorrect password')
 
-    def test_valid_username(self):
+    def test_not_registered_user(self):
         """
-        Check case when user dosn't exist
+        Try to login by not registered user
         """
         self.page.open()
         self.page.login(
@@ -50,26 +50,26 @@ class TestLogin(unittest.TestCase):
 
     def test_invalid_username(self):
         """
-        It seems, that some JS script validate all values that inputs to email form.
-        So, we have 2 according equivalence classes:
-        1: correct form [a-zA-Z0-9_]*@[a-z0-9].[a-z]^2
-        2: incorrect form: any symbols in any sequency without @, also @[0-9a-z]*\
+        It seems that only certain values in a certain format can be entered in the mail field.
+        So, we have 2 corresponding equivalence classes:
+        1: correct form [a-zA-Z0-9_]*@[a-z0-9].[a-z]^3
+        2: incorrect form: any symbols in any sequence without @, also @[0-9a-z]*\
 
-        Checking invalid value in email form
+        Checking invalid value (symbols) in email form
         """
         self.page.open()
         self.page.login(
-            user='test'
+            user=get_random_str(10)
         )
         self.assertEqual('Please enter a valid email', self.page.get_error()[0].text, 'No error message')
 
     def test_invalid_username_number(self):
         """
-        Check digital in invalid form for email
+        Check invalid value (numbers) in email form
         """
         self.page.open()
         self.page.login(
-            user=get_random_int(8)
+            user=get_random_int(10)
         )
 
         self.assertEqual('Please enter a valid email', self.page.get_error()[0].text, 'No error message')
@@ -122,7 +122,7 @@ class TestSearch(unittest.TestCase):
 
     def test_check_search(self):
         """
-        True positive test case
+        Check search
         """
         self.page.open()
         self.page.search(category='Casino', game_name='Mega')
