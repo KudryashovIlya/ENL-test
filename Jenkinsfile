@@ -1,4 +1,12 @@
-node {
-  git url: 'https://github.com/KudryashovIlya/ENL-test.git'
-  sh "echo 'Hello World!'"
+pipeline {
+    agent {
+        docker { image 'node:14-alpine' }
+    }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+            }
+        }
+    }
 }
