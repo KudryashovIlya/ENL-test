@@ -9,7 +9,7 @@ pipeline {
 		}
 		steps {
                 	script {
-				sh 'cd ENL-test; pwd ; pip3 -r install requirements.txt ; python3 -m unittest main.py'
+				sh 'pip3 -r install requirements.txt ; python3 -m unittest main.py'
 			}
             	}
         }
