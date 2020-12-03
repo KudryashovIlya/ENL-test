@@ -1,12 +1,12 @@
 pipeline {
     agent {
-        docker { image 'python:3.8' }
+        docker { image 'my-python' }
     }
     stages {
         stage ('Test'){
 		steps {
                 	script {
-				sh 'python3 -m unittest main.py /tmp/chromedriver'
+				sh 'python3 -m unittest main.py'
 			}
             	}
         }
