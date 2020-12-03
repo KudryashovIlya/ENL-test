@@ -4,12 +4,9 @@ pipeline {
     }
     stages {
         stage ('Test'){
-		when {
-			branch BRANCH_NAME
-		}
 		steps {
                 	script {
-				sh 'pip3 install -U -r requirements.txt ; python3 -m unittest main.py'
+				sh 'python3 -m unittest main.py /tmp/chromedriver'
 			}
             	}
         }
