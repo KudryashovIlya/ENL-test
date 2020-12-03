@@ -1,4 +1,4 @@
-FROM python:3.8
+FROM selenium/standalone-chrome-debug:latest
 
 RUN pip3 install selenium
 
