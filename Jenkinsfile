@@ -5,7 +5,9 @@ pipeline {
     stages {
         stage ('Test'){
             steps {
-                sh 'echo Hello world and ${env.BRANCH_NAME}'
+                script {
+                    sh 'echo Hello world and ${env.BRANCH_NAME}'
+                }
             }
         }
     }
