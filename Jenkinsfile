@@ -3,9 +3,9 @@ pipeline {
         docker { image 'node:14-alpine' }
     }
     stages {
-        stage('Test') {
+        stage ('Test'){
             steps {
-                sh 'node --version'
+                echo BRANCH_NAME
             }
         }
     }
