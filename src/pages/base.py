@@ -9,7 +9,7 @@ from conf import URL, EMAIL, PASSWORD
 class MainPage:
 
     def __init__(self):
-        self.driver = webdriver.Chrome('./bin/chromedriver')
+        self.driver = webdriver.Chrome('/tmp/chromedriver')
         self.driver.implicitly_wait(500)
 
     def open(self, url=URL):
