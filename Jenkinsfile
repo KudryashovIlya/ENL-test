@@ -1,19 +1,19 @@
 pipeline {
     agent {
-        docker { image 'my-python' }
+        docker { image 'python:3.8' }
     }
     stages {
         stage ('Test'){
 		steps {
                 	script {
-				sh 'python3 -m unittest tests.py'
+				sh 'echo "Hello" >> test.txt'
 			}
             	}
         }
     }
 	post {
         	always {
-            		archiveArtifacts artifacts: 'screenshot/*.png', fingerprint: true
+            		archiveArtifacts artifacts: '*.txt', fingerprint: true
         }
     }
 }
