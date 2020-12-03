@@ -1,5 +1,7 @@
 FROM selenium/standalone-chrome-debug:latest
-RUN apt-get install python3
+RUN sudo apt-get update
+
+RUN sudo apt-get install -y python3 python3-pip
 RUN pip3 install selenium
 
 RUN apt-get install wget
