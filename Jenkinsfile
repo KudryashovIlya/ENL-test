@@ -1,4 +1,10 @@
-node {
-  git url: 'https://github.com/KudryashovIlya/ENL-test.git'
-  sh "echo 'Hello World!'"
+pipeline {
+    stage ('Test'){
+        when {
+            branch '${env.BRANCH_NAME}'
+        }
+        steps {
+                sh 'echo Hello world and ${env.BRANCH_NAME}'
+        }
+    }
 }
