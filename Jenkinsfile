@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'node:14-alpine' }
+        docker { image 'python:3.8' }
     }
     stages {
         stage ('Test'){
@@ -8,7 +8,9 @@ pipeline {
 			branch BRANCH_NAME
 		}
 		steps {
-                	echo 'when ${BRANCH_NAME}'
+                	script {
+				sh 'cd ENL-test; pwd ; pip3 -r install requirements.txt ; python3 -m unittest main.py'
+			}
             	}
         }
     }
