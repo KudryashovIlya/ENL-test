@@ -18,7 +18,8 @@ class TestLogin(unittest.TestCase):
         """
         self.page.open()
         self.page.login(flag=1)
-
+        import time
+        self.page.driver.get_screenshot_as_file(f'./screenshots/screenshot_{time.strftime("%d-%m-%y_%H-%M-%S")}.png')
         self.assertEqual(self.page.get_url(), 'https://www.optibet.com/?authShown=true', 'Cannot login!')
 
     def test_empty_form_login(self):
@@ -30,7 +31,7 @@ class TestLogin(unittest.TestCase):
             user='',
             password=''
         )
-
+        self.page.driver.get_screenshot_as_file(f'./screenshots/screenshot_{time.strftime("%d-%m-%y_%H-%M-%S")}.png')
         self.assertEqual(self.page.get_error()[0].text, 'Email is required', 'No error message about email')
         self.assertEqual(self.page.get_error()[1].text, 'Password is required',
                          'No error message about incorrect password')
@@ -44,7 +45,7 @@ class TestLogin(unittest.TestCase):
             user='test@test.com',
             password='password'
         )
-
+        self.page.driver.get_screenshot_as_file(f'./screenshots/screenshot_{time.strftime("%d-%m-%y_%H-%M-%S")}.png')
         self.assertEqual('The username or password is incorrect',
                          self.page.get_error()[0].text, 'Incorrect behavior with unexist user')
 
