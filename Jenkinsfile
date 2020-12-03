@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage ('Test'){
             steps {
-                echo $env.BRANCH_NAME
+                echo BRANCH_NAME
             }
         }
     }
