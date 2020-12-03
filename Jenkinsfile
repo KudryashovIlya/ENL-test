@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage ('Test'){
 		when {
-			branch 'main'
+			branch BRANCH_NAME
 		}
 		steps {
                 	echo 'when ${BRANCH_NAME}'
