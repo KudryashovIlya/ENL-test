@@ -4,6 +4,7 @@ pipeline {
     }
 	
     parameters {
+	    choice(choices: 'oblt-desktop\noblt-mobile\nobcom-desktop\nobcom-mobile\nlaimzlv-desktop\noblt-desktop.mobile.withdraw', description: 'Select', name: 'Brand')
     	string(defaultValue: '', description: 'Run small flow', name: 'SmallFlow')
     }
 	
@@ -12,7 +13,7 @@ pipeline {
 		steps {
                 	script {
 				if (!params.SmallFlow.isEmpty()){
-					sh 'echo "here is ${params.SmallFlow}" >> test.txt'
+					sh 'sleep(10) ; echo "here is ${params.SmallFlow}" >> test.txt'
 				} else {
 					sh 'echo SmallFlow is empty'
 				}
