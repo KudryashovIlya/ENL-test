@@ -12,7 +12,7 @@ pipeline {
 		steps {
                 	script {
 				if (!params.SmallFlow.isEmpty()){
-					echo "here is ${params.SmallFlow} >> test.txt"
+					sh 'echo "here is ${params.SmallFlow}" >> test.txt'
 				} else {
 					sh 'echo SmallFlow is empty'
 				}
