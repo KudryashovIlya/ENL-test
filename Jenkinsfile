@@ -2,9 +2,11 @@ pipeline {
     agent {
         docker { image 'python:3.8' }
     }
-    parametres {
+	
+    parameters {
     	string(defaultValue: '', description: 'Run small flow', name: 'SmallFlow')
     }
+	
     stages {
         stage ('Test'){
 		steps {
@@ -19,9 +21,10 @@ pipeline {
             	}
         }
     }
-	post {
-        	always {
-            		archiveArtifacts artifacts: '*.txt', fingerprint: true
+	
+    post {
+        always {
+            	archiveArtifacts artifacts: '*.txt', fingerprint: true
         }
     }
 }
