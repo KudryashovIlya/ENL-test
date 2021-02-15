@@ -8,9 +8,12 @@ pipeline {
     }	
     stages {
         stage('Test'){
-		when { 
-			branch 'jenkins-test'
-		}
+		when {
+               	 allOf {
+                    branch 'production'
+                    environment name: 'DEPLOY_TO', value: 'production'
+                }
+            }
 		steps {
 			echo '${params.IsTestRun}'
             	}
