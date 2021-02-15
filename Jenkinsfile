@@ -8,15 +8,15 @@ pipeline {
     }	
     stages {
         stage('Test'){
-		when {
-               	 anyOf {
-                    branch 'jenkins-test'
-		    expression { params.IsTestRun }
-                }
+		      when {
+            anyOf {
+              branch 'jenkins-test'
+		          expression { params.IsTestRun }
             }
-		steps {
-			echo '${params.IsTestRun}'
-            	}
-        }
+          }
+		      steps {
+			      echo params.IsTestRun
+          }
+       }
     }
 }
