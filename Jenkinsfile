@@ -20,7 +20,6 @@ pipeline {
           }
 		      steps {
 			      sh "BRAND_STR=`echo ${params.Brand} | tr a-z A-Z`"
-			      sh "echo $BRAND_STR"
           }
        }
     }
