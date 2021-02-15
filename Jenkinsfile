@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Test'){
 		when {
-               	 allOf {
+               	 anyOf {
                     branch 'jenkins-test'
 		    expression { params.IsTestRun }
                 }
