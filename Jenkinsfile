@@ -4,12 +4,12 @@ pipeline {
     }
 	
     parameters {
-	    choice(choices: 'oblt-desktop\noblt-mobile\nobcom-desktop\nobcom-mobile\nlaimzlv-desktop\noblt-desktop.mobile.withdraw', description: 'Select', name: 'Brand')
-    	string(defaultValue: '', description: 'Run small flow', name: 'SmallFlow')
+        booleanParam(defaultValue: false, description: 'Check this box if you want to test your PR', name: 'IsTestRun')
     }
 	
     stages {
         stage ('Test'){
+		when { anyOf { branch: 'jenkins-test' }}
 		steps {
                 	script {
 				if (!params.SmallFlow.isEmpty()){
