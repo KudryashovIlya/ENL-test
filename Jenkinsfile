@@ -15,7 +15,7 @@ pipeline {
             }
           }
 		      steps {
-			      sh 'echo ${params.IsTestRun}'
+			      sh "echo ${params.IsTestRun}"
           }
        }
     }
