@@ -5,27 +5,18 @@ pipeline {
 	
     parameters {
         booleanParam(defaultValue: false, description: 'Check this box if you want to test your PR', name: 'IsTestRun')
-    }
-	
+    }	
     stages {
-        stage ('Test'){
-		when { anyOf { branch: 'jenkins-test' }}
-		steps {
-                	script {
-				if (!params.SmallFlow.isEmpty()){
-					sh 'sleep(10) ; echo "here is ${params.SmallFlow}" >> test.txt'
-				} else {
-					sh 'echo SmallFlow is empty'
-				}
-
+        stage('Test'){
+		when { 
+			anyOf { 
+				branch: 'jenkins-test'
+				params.IsTestRun 
 			}
+		}
+		steps {
+			echo '${params.IsTestRun}'
             	}
-        }
-    }
-	
-    post {
-        always {
-            	archiveArtifacts artifacts: '*.txt', fingerprint: true
         }
     }
 }
