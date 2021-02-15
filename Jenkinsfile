@@ -9,10 +9,7 @@ pipeline {
     stages {
         stage('Test'){
 		when { 
-			anyOf { 
-				branch: 'jenkins-test'
-				params.IsTestRun 
-			}
+			branch 'jenkins-test'
 		}
 		steps {
 			echo '${params.IsTestRun}'
