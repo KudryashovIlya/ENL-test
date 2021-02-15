@@ -4,28 +4,19 @@ pipeline {
     }
 	
     parameters {
-	    choice(choices: 'oblt-desktop\noblt-mobile\nobcom-desktop\nobcom-mobile\nlaimzlv-desktop\noblt-desktop.mobile.withdraw', description: 'Select', name: 'Brand')
-    	string(defaultValue: '', description: 'Run small flow', name: 'SmallFlow')
-    }
-	
+        booleanParam(defaultValue: false, description: 'Check this box if you want to test your PR', name: 'IsTestRun')
+    }	
     stages {
-        stage ('Test'){
+        stage('Test'){
+		when {
+               	 anyOf {
+                    branch 'jenkins-test'
+		    expression { params.IsTestRun }
+                }
+            }
 		steps {
-                	script {
-				if (!params.SmallFlow.isEmpty()){
-					sh 'sleep(10) ; echo "here is ${params.SmallFlow}" >> test.txt'
-				} else {
-					sh 'echo SmallFlow is empty'
-				}
-
-			}
+			echo '${params.IsTestRun}'
             	}
-        }
-    }
-	
-    post {
-        always {
-            	archiveArtifacts artifacts: '*.txt', fingerprint: true
         }
     }
 }
